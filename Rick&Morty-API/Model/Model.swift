@@ -8,7 +8,21 @@
 
 import Foundation
 
-//ACA TENGO QUE CREAR LA ESTRUCTURA DE DATOS NECESARIA PARA PODER PARSEAR EL JSON
+struct CharacterResponse: Decodable {
+    let info: Info
+    let results: [Character]
+}
 
-//TODAS LAS STRUCT NECESARIAS
+struct Info: Decodable {
+    let next: String
+}
 
+struct Character: Decodable {
+    let name: String
+    let image: String
+    let location: Location
+}
+
+struct Location: Decodable {
+    let name: String
+}
