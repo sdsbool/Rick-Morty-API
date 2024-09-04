@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84BD67872C7D4FA400093A98 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BD67862C7D4FA400093A98 /* CharacterViewModel.swift */; };
 		84F9293E2C7406DF0002E70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9293D2C7406DF0002E70E /* AppDelegate.swift */; };
 		84F929402C7406DF0002E70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9293F2C7406DF0002E70E /* ViewController.swift */; };
 		84F929452C7406DF0002E70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F929442C7406DF0002E70E /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84BD67862C7D4FA400093A98 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		84F9293A2C7406DF0002E70E /* Rick&Morty-API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick&Morty-API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9293D2C7406DF0002E70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84F9293F2C7406DF0002E70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		84F929502C7409DA0002E70E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				84BD67862C7D4FA400093A98 /* CharacterViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84F929592C7435C00002E70E /* Model.swift in Sources */,
+				84BD67872C7D4FA400093A98 /* CharacterViewModel.swift in Sources */,
 				84F929572C740CD80002E70E /* CharacterCustomCell.swift in Sources */,
 				84F929532C740A060002E70E /* CharacterListView.swift in Sources */,
 				84F9295B2C7436070002E70E /* CharacterDetailView.swift in Sources */,

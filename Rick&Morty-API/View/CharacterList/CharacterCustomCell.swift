@@ -11,7 +11,7 @@ import UIKit
 class CharacterCustomCell: UITableViewCell {
     
     //Creacion de vistas según necesidad
-    private var imageCharacterView: UIImageView = {
+    public var imageCharacterView: UIImageView = {
         let imageCharacter = UIImageView()
         imageCharacter.contentMode = .scaleAspectFit
         imageCharacter.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +19,7 @@ class CharacterCustomCell: UITableViewCell {
         return imageCharacter
     }()
     
-    private var nameCharacterLabel : UILabel = {
+    public var nameCharacterLabel : UILabel = {
         let nameCharacter = UILabel()
         nameCharacter.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         nameCharacter.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +27,7 @@ class CharacterCustomCell: UITableViewCell {
         return nameCharacter
     }()
     
-    private var locationCharacterLabel : UILabel = {
+    public var locationCharacterLabel : UILabel = {
         let locationCharacter = UILabel()
         locationCharacter.font = UIFont.systemFont(ofSize: 16, weight: .light)
         locationCharacter.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,7 @@ class CharacterCustomCell: UITableViewCell {
         return locationCharacter
     }()
     
-    lazy private var stackView : UIStackView = {
+    lazy public var stackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
@@ -55,12 +55,28 @@ class CharacterCustomCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+  /*  func configure(with character: Character) {
+        nameCharacterLabel.text = character.name
+        locationCharacterLabel.text = character.location.name
+        
+        if let url = URL(string: character.image) {
+            loadImage(from: url)
+        }
+    }
+ 
+ */
+    
+    private func loadImage(from url: URL) {
+        URLSession.shared.dataTask(with: url)
+    }
+    
     func setupCustomCell() {
         addSubview(imageCharacterView)
         addSubview(stackView)
         configureConstraints()
     }
     
+    //Configuracion de Constraints
     func configureConstraints() {
         NSLayoutConstraint.activate([
             
@@ -78,7 +94,21 @@ class CharacterCustomCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
             ])
     }
+    
+    //configuracion de lo que van a mostrar las vistas
+    func configure(with character: Character) {
+        nameCharacterLabel.text = character.name
+        locationCharacterLabel.text = character.location.name
+        if let url = URL(string: character.image) {
+            URLSession.shared.dataTask(with: url) {[weak self] data, _, _ in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.imageCharacterView.image = image
+                    }
+                }
+                
+            }
+        }
+    }
 }
 
-
-// QUE ME FALTA
