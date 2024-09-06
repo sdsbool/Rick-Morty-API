@@ -12,7 +12,11 @@ class CharacterViewModel {
     
     public var characters: [Character] = []
     private var nextPageURL: String?
-    private var isLoading = false
+    private var isLoading = false {
+        didSet {
+            onLoadingStateChanged?(isLoading)
+        }
+    }
     
     
     var onDataUpdated: (() -> Void)?
@@ -48,12 +52,10 @@ class CharacterViewModel {
                 DispatchQueue.main.async {
                     self.onDataUpdated!()
                     self.isLoading = false
-                    self.onLoadingStateChanged!(false)
                 }
             } catch {
                 print("Error data: \(error)")
                 self.isLoading = false
-                self.onLoadingStateChanged!(false)
             }
         }
         task.resume()
