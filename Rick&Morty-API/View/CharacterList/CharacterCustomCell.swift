@@ -95,19 +95,31 @@ class CharacterCustomCell: UITableViewCell {
             ])
     }
     
-    //configuracion de lo que van a mostrar las vistas
+ 
+    
     func configure(with character: Character) {
         nameCharacterLabel.text = character.name
         locationCharacterLabel.text = character.location.name
+        
+        imageCharacterView.image = nil
+        
+        // Cargo la imagen desde la URL
         if let url = URL(string: character.image) {
-            URLSession.shared.dataTask(with: url) {[weak self] data, _, _ in
+            let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                // Manejo de errores
+                if let error = error {
+                    print("Error in image: \(error)")
+                    return
+                }
+                // Verifico si se recibieron datos y convierto a imagen
                 if let data = data, let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.imageCharacterView.image = image
                     }
                 }
-                
             }
+            task.resume()
+            
         }
     }
 }
